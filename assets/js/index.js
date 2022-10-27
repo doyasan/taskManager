@@ -1,22 +1,22 @@
-const onClickAdd = () => {
-	//テキストボックスの値を習得
-	const inputTxt = document.getElementById("js__input--txt");
-	//リストを習得
-	const incompletelist = document.getElementById("todo__list--incomplete");
-	const completelist = document.getElementById("todo__list--complete");
+const clickAdd = () => {
+	//テキストボックスを習得
+	const inputTxt = document.querySelector("#js__input--txt");
 
-	//li生成
+	//リストを習得
+	const incompletelist = document.querySelector("#task__list--incomplete");
+	const completelist = document.querySelector("#task__list--complete");
+
+	//リストアイテム生成
 	const createLi = document.createElement("li");
-	createLi.classList.add("todo__item");
+	createLi.classList.add("task__item");
 	createLi.textContent = inputTxt.value;
 
-	//button（完了）生成
+	//ボタン（完了）生成
 	const createBtnComplete = document.createElement("button");
 	createBtnComplete.classList.add("js__btn--complete");
 	createBtnComplete.textContent = "完了";
 	createBtnComplete.addEventListener("click", () => { //完了クリック時
 		const targetDel = createBtnComplete.parentNode;
-		console.log(targetDel);
 		parentDel(targetDel, incompletelist);
 		targetDel.appendChild(createBtnReturn);
 		targetDel.removeChild(createBtnComplete);
@@ -24,7 +24,7 @@ const onClickAdd = () => {
 		completelist.appendChild(targetDel);
 	});
 
-	//button（削除）生成
+	//ボタン（削除）生成
 	const createBtnRemove = document.createElement("button");
 	createBtnRemove.classList.add("js__btn--remove");
 	createBtnRemove.textContent = "削除";
@@ -33,7 +33,7 @@ const onClickAdd = () => {
 		parentDel(targetDel, incompletelist);
 	});
 
-	//button（戻す）生成
+	//ボタン（戻す）生成
 	const createBtnReturn = document.createElement("button");
 	createBtnReturn.classList.add("js__btn--return");
 	createBtnReturn.textContent = "戻す";
@@ -49,20 +49,40 @@ const onClickAdd = () => {
 	//親要素削除の処理
 	const parentDel = (target, list) => {
 		list.removeChild(target);
-		console.log(target);
-		console.log(list);
 	}
 
-	//未完了リストにliとボタン追加
-	incompletelist.appendChild(createLi);
-	createLi.appendChild(createBtnComplete);
-	createLi.appendChild(createBtnRemove);
+	//未完了リストにリストアイテム追加 ＆ エラーメッセージ
+	if (createLi.textContent) {
+		if(createLi.textContent.length <= 30){
+			if (incompletelist.querySelectorAll(".task__item").length < 10) {
+				incompletelist.appendChild(createLi);
+				createLi.appendChild(createBtnComplete);
+				createLi.appendChild(createBtnRemove);
+			} else {
+				const errMessage = document.createElement("p");
+				errMessage.classList.add("message--error");
+				errMessage.textContent = "※タスク上限です。";
+				document.getElementById("task--incomplete").appendChild(errMessage);
+			}
+		} else {
+			const errMessage = document.createElement("p");
+			errMessage.classList.add("message--error");
+			errMessage.textContent = "※文字数上限です。(30文字)";
+			document.querySelector("#task--input").appendChild(errMessage);
+		}
+	}
 
 	//テキストボックスの値を初期化
 	inputTxt.value = ""
 }
 
 //追加ボタンクリック
-document.getElementById("js__btn--add").addEventListener("click", () => {
-	onClickAdd();
-});
+document.querySelector("#js__btn--add").addEventListener("click", () => clickAdd());
+//エンターキーでも発火
+document.querySelector("#js__input--txt").addEventListener('keypress', returnkey);
+function returnkey(e) {
+	if (e.keyCode === 13) {
+		clickAdd();
+  } 
+	  return false;
+}

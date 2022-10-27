@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>ToDoアプリ</title>
+	<title>タスク管理ツール</title>
 	<meta name="title" content=" | ">
 	<!-- linkの指定 -->
 	<link rel="stylesheet" href="assets/css/style.css">
@@ -11,20 +11,21 @@
 
 <body>
 	<main>
-		<div class="todo">
-			<h1>ToDoアプリ</h1>
-			<div class="todo__block todo--input">
-				<input id="js__input--txt" placeholder="TODOを入力" type="text">
-				<br>
-				<button id="js__btn--add">追加</button>
+		<div class="task">
+			<h1>タスク管理ツール</h1>
+			<div id="task--input" class="task__block">
+				<label for="js__input--txt">
+					<input id="js__input--txt" placeholder="タスクを入力" type="text">
+					<button id="js__btn--add">追加</button>
+				</label>	
 			</div>
-			<div class="todo__block todo--incomplete">
-				<h3>未完了のTODO</h3>
-				<ul id="todo__list--incomplete"></ul>
+			<div class="task__block" id="task--incomplete">
+				<h3>未完了のタスク</h3>
+				<ul id="task__list--incomplete" class="task__list"></ul>
 			</div>
-			<div class="todo__block todo--complete">
-				<h3>完了したTODO</h3>
-				<ul id="todo__list--complete"></ul>
+			<div class="task__block" id="task--complete">
+				<h3>完了したタスク</h3>
+				<ul id="task__list--complete" class="task__list"></ul>
 			</div>
 		</div>
 

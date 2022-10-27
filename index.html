@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<title>ToDoアプリ</title>
+	<meta name="title" content=" | ">
+	<!-- linkの指定 -->
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+	<main>
+		<div class="todo">
+			<h1>ToDoアプリ</h1>
+			<div class="todo__block todo--input">
+				<input id="js__input--txt" placeholder="TODOを入力" type="text">
+				<br>
+				<button id="js__btn--add">追加</button>
+			</div>
+			<div class="todo__block todo--incomplete">
+				<h3>未完了のTODO</h3>
+				<ul id="todo__list--incomplete"></ul>
+			</div>
+			<div class="todo__block todo--complete">
+				<h3>完了したTODO</h3>
+				<ul id="todo__list--complete"></ul>
+			</div>
+		</div>
+
+	</main>
+
+	<!-- scriptの指定 -->
+	<script src="assets/js/index.js"></script>
+</body>
+
+</html>

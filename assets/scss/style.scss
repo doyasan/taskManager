@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+@import "../scss/setting";
+
+body {
+    font-family: sans-serif;
+    background: #eee;
+}
+
+.todo {
+    margin: auto;
+    max-width: 400px;
+}
+
+h1 {
+    margin: 0 auto 30px;
+    text-align: center;
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 10px auto;
+        display: block;
+        width: 30px;
+        height: 3px;
+        background: #000;
+    }
+}
+
+.todo__block {
+    padding: 20px 20px;
+
+    h3 {
+        position: relative;
+        margin: 0 auto 30px;
+        text-align: center;
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 10px auto;
+            display: block;
+            width: 10px;
+            height: 2px;
+            background: #000;
+        }
+    }
+    input,
+    button {
+        border-radius: 16px;
+        outline: none;
+        border: none;
+    }
+    input {
+        box-sizing: border-box;
+        margin-right: 10px;
+        padding: 4px 10px;
+        width: 100%;
+    }
+    button {
+        margin: 0 4px;
+        padding: 4px 8px;
+        color: #fff;
+        background: #8f8f8f;
+        white-space: nowrap;
+        &:hover {
+            background: rgb(255, 194, 255);
+            color: #000;
+        }
+        &:first-of-type{
+            margin-left: auto;
+        }
+    }
+}
+
+.todo__item {
+    display: flex;
+    &:not(:last-of-type){
+        margin-bottom: 10px;
+    }
+}
+
+.todo--input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(200, 240, 255);
+}
+
+.todo--incomplete {
+    background: rgb(213, 255, 213);
+}
+
+.todo--complete {
+    background: rgb(255, 237, 203);
+}
